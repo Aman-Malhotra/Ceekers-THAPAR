@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:startup_punjab/Startup/signUp.dart' as startup;
+import 'package:startup_punjab/Widgets/styles.dart';
 import 'package:startup_punjab/Widgets/widgets.dart';
+import 'package:startup_punjab/Govt/signUp.dart' as govt;
 
 class MainPage extends StatefulWidget {
   @override
@@ -35,28 +38,47 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: stackBg(
+        reverse: (controller.index == 0) ? false : true,
         widget: TabBarView(
           controller: controller,
           children: <Widget>[
             tabCard(
               startup.SignUp(),
             ),
-            tabCard(Container()),
+            tabCard(
+              govt.SignUp(),
+            ),
           ],
         ),
         context: context,
       ),
       bottomNavigationBar: TabBar(
+        indicatorSize: TabBarIndicatorSize.label,
+        indicatorWeight: 3.0,
         controller: controller,
+        unselectedLabelStyle: Styles(context).title().merge(
+              TextStyle(
+                fontSize: 14.0,
+              ),
+            ),
+        labelStyle: Styles(context).title().merge(
+              TextStyle(
+                fontSize: 14.0,
+              ),
+            ),
         labelColor: Theme.of(context).primaryColor,
         tabs: <Widget>[
           Tab(
             child: Text("Startup"),
-            // icon: Icon(Icons.star),
+            icon: Icon(
+              FontAwesomeIcons.rocket,
+            ),
           ),
           Tab(
             child: Text("Authority"),
-            // icon: Icon(Icons.home),
+            icon: Icon(
+              FontAwesomeIcons.building,
+            ),
           ),
         ],
       ),

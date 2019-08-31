@@ -9,14 +9,12 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  TextEditingController emailController, passController;
+  TextEditingController idController, passController;
 
   @override
   void initState() {
     super.initState();
-    emailController = new TextEditingController();
+    idController = new TextEditingController();
     passController = new TextEditingController();
   }
 
@@ -38,7 +36,6 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: <Widget>[
@@ -52,10 +49,12 @@ class _SignUpState extends State<SignUp> {
           ),
           padding(
             formFields(
+              controller:  idController,
               context: context,
-              hintText: "Email",
-              controller: emailController,
-              validator: validateEmail,
+              validator: (String str) {
+                return null;
+              },
+              hintText: "User Id",
               borderSide: BorderSide(
                 color: Colors.deepPurple,
                 width: 10.0,
@@ -87,19 +86,6 @@ class _SignUpState extends State<SignUp> {
                 gradient: Styles(context).linearGradient(),
                 borderRadius: BorderRadius.circular(5.0),
               ),
-            ),
-          ),
-          padding(
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text("Not registered yet ?"),
-                subTitle(
-                  context: context,
-                  text: "Sign Up",
-                ),
-              ],
             ),
           ),
         ],
