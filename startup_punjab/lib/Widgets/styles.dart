@@ -9,21 +9,24 @@ class Styles {
       color: Theme.of(context).primaryColor,
       fontWeight: FontWeight.w700,
       fontSize: 16.0,
+      letterSpacing: 0.3,
     );
   }
 
   TextStyle subTitle() {
     return TextStyle(
       color: Theme.of(context).primaryColor,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       fontSize: 14.0,
+      letterSpacing: 0.3,
     );
   }
 
   TextStyle buttonTextTitle() {
     return TextStyle(
       color: Colors.white,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
+      letterSpacing: 0.3,
       fontSize: 14.0,
     );
   }
@@ -36,6 +39,16 @@ class Styles {
       ],
       begin: Alignment.centerLeft,
       end: Alignment.centerRight,
+    );
+  }
+  LinearGradient linearGradientReverse() {
+    return LinearGradient(
+      colors: [
+        Colors.deepPurple,
+        Colors.deepOrange,
+      ],
+      begin: Alignment.centerRight,
+      end: Alignment.centerLeft,
     );
   }
 }

@@ -13,16 +13,25 @@ Padding padding(Widget widget) {
   );
 }
 
-Widget formFields({
-  @required BuildContext context,
-  @required Function(String) validator,
-  @required String hintText,
-  @required BorderSide borderSide,
-}) {
+Widget formFields(
+    {@required BuildContext context,
+    @required Function(String) validator,
+    @required String hintText,
+    @required BorderSide borderSide,
+    @required TextEditingController controller}) {
   return TextFormField(
     validator: validator,
+    controller: controller,
     decoration: InputDecoration(
       hintText: hintText,
+      hintStyle: Styles(context).title().copyWith(
+            color: Colors.grey.shade500,
+            fontSize: 14.0,
+          ),
+      labelStyle: Styles(context).title().copyWith(
+            color: Colors.grey.shade500,
+            fontSize: 14.0,
+          ),
       border: OutlineInputBorder(borderSide: borderSide),
     ),
   );
@@ -47,17 +56,18 @@ Widget button(
 Widget stackBg({
   @required Widget widget,
   @required BuildContext context,
+  @required bool reverse,
 }) {
   return Stack(
     children: <Widget>[
       ClipPath(
         child: Container(
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height * 1,
           decoration: BoxDecoration(
             gradient: Styles(context).linearGradient(),
           ),
         ),
-        clipper: WaveClipperOne(),
+        clipper: WaveClipperOne(reverse: false),
       ),
       widget
     ],
