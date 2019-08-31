@@ -67,9 +67,34 @@ def get_startup():
 
         for doc in docs:
             #print(u'{} => {}'.format(doc.id, doc.to_dict()))
-            startuplist.append(doc.to_dict())
+            sdict=doc.to_dict()
+            sdict['sid']=doc.id
+            startuplist.append(sdict)
+
 
         return jsonify({"startup":startuplist})
+    except KeyError as err:
+        return jsonify({"error":str(err)})        
+    except Exception as err:
+        return jsonify({"error":str(err)})
+
+@app.route('/approvestartup/', methods=['POST'])
+@cross_origin(allow_headers=['Content-Type', 'Authorization'])
+def approve_startup():
+    # Project ID is determined by the GOOGLE_APPLICATION_CREDENTIALS environment variable
+    try:
+        data = request.get_json()
+        
+        sid=data['sid']
+
+        approve=1
+
+        doc_ref=db.collection(u'startup').document(sid)
+        doc_ref.set({
+            u'approve':str(approve)
+        },merge=True)
+
+        return jsonify({"{} is approved".format(sid)})
     except KeyError as err:
         return jsonify({"error":str(err)})        
     except Exception as err:
