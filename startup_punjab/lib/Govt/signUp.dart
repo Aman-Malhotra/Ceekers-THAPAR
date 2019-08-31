@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:startup_punjab/Widgets/styles.dart';
+import 'package:startup_punjab/Govt/dashboard.dart';
 import 'package:startup_punjab/Widgets/widgets.dart';
 import 'package:startup_punjab/Widgets/title.dart';
 
@@ -29,7 +29,15 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
-  loginClick() {}
+  loginClick() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Dashboard(),
+        fullscreenDialog: true,
+      ),
+    );
+  }
 
   signupClick() {}
 
@@ -45,21 +53,17 @@ class _SignUpState extends State<SignUp> {
             height: MediaQuery.of(context).size.height * 0.1,
           ),
           ListTile(
+            dense: true,
             title: title(context: context, text: "Login"),
           ),
           padding(
             formFields(
-              controller:  idController,
+              controller: idController,
               context: context,
               validator: (String str) {
                 return null;
               },
               hintText: "User Id",
-              borderSide: BorderSide(
-                color: Colors.deepPurple,
-                width: 10.0,
-                style: BorderStyle.solid,
-              ),
             ),
           ),
           padding(
@@ -68,24 +72,13 @@ class _SignUpState extends State<SignUp> {
               controller: passController,
               hintText: "Password",
               validator: validateEmail,
-              borderSide: BorderSide(
-                color: Colors.deepPurple,
-                width: 0.0,
-                style: BorderStyle.solid,
-              ),
             ),
           ),
           padding(
-            Container(
-              child: button(
-                context: context,
-                function: loginClick,
-                text: "Login",
-              ),
-              decoration: BoxDecoration(
-                gradient: Styles(context).linearGradient(),
-                borderRadius: BorderRadius.circular(5.0),
-              ),
+            button(
+              context: context,
+              function: loginClick,
+              text: "Login",
             ),
           ),
         ],

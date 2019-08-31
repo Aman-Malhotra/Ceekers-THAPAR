@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:startup_punjab/Startup/dashboard.dart';
+import 'package:startup_punjab/Startup/registration.dart';
 import 'package:startup_punjab/Widgets/styles.dart';
 import 'package:startup_punjab/Widgets/widgets.dart';
 import 'package:startup_punjab/Widgets/title.dart';
@@ -31,7 +33,15 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
-  loginClick() {}
+  loginClick() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Dashboard(),
+        fullscreenDialog: true,
+      ),
+    );
+  }
 
   signupClick() {}
 
@@ -48,6 +58,7 @@ class _SignUpState extends State<SignUp> {
             height: MediaQuery.of(context).size.height * 0.1,
           ),
           ListTile(
+            dense: true,
             title: title(context: context, text: "Login"),
           ),
           padding(
@@ -56,11 +67,6 @@ class _SignUpState extends State<SignUp> {
               hintText: "Email",
               controller: emailController,
               validator: validateEmail,
-              borderSide: BorderSide(
-                color: Colors.deepPurple,
-                width: 10.0,
-                style: BorderStyle.solid,
-              ),
             ),
           ),
           padding(
@@ -69,24 +75,13 @@ class _SignUpState extends State<SignUp> {
               controller: passController,
               hintText: "Password",
               validator: validateEmail,
-              borderSide: BorderSide(
-                color: Colors.deepPurple,
-                width: 0.0,
-                style: BorderStyle.solid,
-              ),
             ),
           ),
           padding(
-            Container(
-              child: button(
-                context: context,
-                function: loginClick,
-                text: "Login",
-              ),
-              decoration: BoxDecoration(
-                gradient: Styles(context).linearGradient(),
-                borderRadius: BorderRadius.circular(5.0),
-              ),
+            button(
+              context: context,
+              function: loginClick,
+              text: "Login",
             ),
           ),
           padding(
@@ -95,9 +90,19 @@ class _SignUpState extends State<SignUp> {
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text("Not registered yet ?"),
-                subTitle(
-                  context: context,
-                  text: "Sign Up",
+                InkWell(
+                  child: subTitle(
+                    context: context,
+                    text: "Sign Up",
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Registration(),
+                          fullscreenDialog: true),
+                    );
+                  },
                 ),
               ],
             ),

@@ -38,7 +38,6 @@ class _MainPageState extends State<MainPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: stackBg(
-        reverse: (controller.index == 0) ? false : true,
         widget: TabBarView(
           controller: controller,
           children: <Widget>[
