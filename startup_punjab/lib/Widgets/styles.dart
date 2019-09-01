@@ -8,7 +8,7 @@ class Styles {
     return TextStyle(
       color: Theme.of(context).primaryColor,
       fontWeight: FontWeight.w700,
-      fontSize: 16.0,
+      fontSize: 15.0,
       letterSpacing: 0.3,
     );
   }
@@ -17,7 +17,7 @@ class Styles {
     return TextStyle(
       color: Theme.of(context).primaryColor,
       fontWeight: FontWeight.w600,
-      fontSize: 14.0,
+      fontSize: 13.0,
       letterSpacing: 0.3,
     );
   }
@@ -27,7 +27,7 @@ class Styles {
       color: Colors.white,
       fontWeight: FontWeight.w600,
       letterSpacing: 0.3,
-      fontSize: 14.0,
+      fontSize: 13.0,
     );
   }
 

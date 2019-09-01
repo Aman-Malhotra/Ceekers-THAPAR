@@ -75,6 +75,7 @@ class _SignUpState extends State<SignUp> {
               controller: passController,
               hintText: "Password",
               validator: validateEmail,
+              obscureText: true
             ),
           ),
           padding(

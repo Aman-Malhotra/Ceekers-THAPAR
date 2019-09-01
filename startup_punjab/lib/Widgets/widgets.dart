@@ -14,14 +14,17 @@ Padding padding(Widget widget) {
   );
 }
 
-Widget formFields(
-    {@required BuildContext context,
-    @required Function(String) validator,
-    @required String hintText,
-    @required TextEditingController controller}) {
+Widget formFields({
+  @required BuildContext context,
+  @required Function(String) validator,
+  @required String hintText,
+  @required TextEditingController controller,
+  bool obscureText = false,
+}) {
   return TextFormField(
     validator: validator,
     controller: controller,
+    obscureText: obscureText,
     style: Styles(context).subTitle().copyWith(
           color: Colors.grey.shade700,
         ),
@@ -86,6 +89,37 @@ Widget prop(String title, String subtitle, BuildContext context) {
   );
 }
 
+Widget adminDashboardProp(
+    String title, String subtitle, BuildContext context, Function function) {
+  return Card(
+    elevation: 2.0,
+    child: ListTile(
+      isThreeLine: true,
+      title: Text(
+        title,
+        textAlign: TextAlign.center,
+        style: Styles(context).title(),
+      ),
+      subtitle: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(10.0),
+          ),
+          Text(
+            subtitle,
+            style: Styles(context).title().copyWith(
+                  color: Colors.grey.shade600,
+                ),
+          ),
+        ],
+      ),
+      onTap: function,
+    ),
+  );
+}
+
 Widget tabCard({
   @required BuildContext context,
   @required Widget widget,
@@ -101,6 +135,56 @@ Widget tabCard({
     child: Padding(
       padding: const EdgeInsets.all(10.0),
       child: widget,
+    ),
+  );
+}
+
+Widget companyCard(
+    {@required Startup startup, @required BuildContext context}) {
+  return Container(
+    margin: EdgeInsets.all(5.0),
+    padding: EdgeInsets.all(10.0),
+    width: double.infinity,
+    decoration: BoxDecoration(
+      gradient: Styles(context).linearGradient(),
+      borderRadius: BorderRadius.circular(
+        5.0,
+      ),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          upperCamelCase(startup.name),
+          style: Styles(context).title().copyWith(
+                fontSize: 14.0,
+                color: Theme.of(context).cardColor,
+              ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "Industry : ${upperCamelCase(startup.industry)}",
+                style: Styles(context).title().copyWith(
+                      fontSize: 12.0,
+                      color: Theme.of(context).cardColor,
+                    ),
+              ),
+              Text(
+                "Sector : ${upperCamelCase(startup.sector)}",
+                textAlign: TextAlign.center,
+                style: Styles(context).title().copyWith(
+                      fontSize: 12.0,
+                      color: Theme.of(context).cardColor,
+                    ),
+              ),
+            ],
+          ),
+        ),
+      ],
     ),
   );
 }
