@@ -6,6 +6,7 @@ import 'package:startup_punjab/Startup/apiCall.dart';
 import 'package:startup_punjab/Startup/startupDataModel.dart';
 import 'package:startup_punjab/Widgets/styles.dart';
 import 'package:startup_punjab/Widgets/title.dart';
+import 'package:startup_punjab/Widgets/title.dart' as prefix0;
 import 'package:startup_punjab/Widgets/widgets.dart';
 
 class Dashboard extends StatefulWidget {
@@ -168,8 +169,14 @@ class _DashboardState extends State<Dashboard> {
       children: [
         TableRow(children: [
           TableCell(
-            child: InkWell(
-              onTap: () {
+            child: adminDashboardProp(
+              "Location :",
+              upperCamelCase(getKey(cityMap)) +
+                  "(" +
+                  upperCamelCase(getValue(cityMap)) +
+                  "%)",
+              context,
+              () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -178,14 +185,6 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 );
               },
-              child: adminDashboardProp(
-                  "Location :",
-                  upperCamelCase(getKey(cityMap)) +
-                      "(" +
-                      upperCamelCase(getValue(cityMap)) +
-                      "%)",
-                  context,
-                  () {}),
             ),
           ),
           TableCell(
@@ -278,6 +277,7 @@ class _DashboardState extends State<Dashboard> {
                 ),
               ),
             ),
+            ChartPage(data),
           ],
         ),
       ),
@@ -288,7 +288,7 @@ class _DashboardState extends State<Dashboard> {
     return [
       SliverAppBar(
         title: Text(
-          "News",
+          "Search",
           style: Styles(context).title().copyWith(
                 color: Colors.white,
               ),
@@ -356,7 +356,7 @@ class _DashboardState extends State<Dashboard> {
     return [
       SliverAppBar(
         title: Text(
-          "Profile",
+          "Graphs",
           style: Styles(context).title().copyWith(
                 color: Colors.white,
               ),
@@ -369,7 +369,115 @@ class _DashboardState extends State<Dashboard> {
       ),
       SliverList(
         delegate: SliverChildListDelegate(
-          [],
+          [
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  prefix0.title(
+                      context: context, text: "Gender ratio in industries"),
+                  Image.asset(
+                    "assets/charts/barchart2.jpeg",
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  prefix0.title(
+                      context: context,
+                      text: "Industry distribution in cities"),
+                  Image.asset(
+                    "assets/charts/barchart3.jpeg",
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  prefix0.title(
+                      context: context,
+                      text: "Citi v/s Industry with number of people"),
+                  Image.asset(
+                    "assets/charts/heatmap.jpeg",
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  prefix0.title(
+                      context: context, text: "Gender ratio in industries"),
+                  Image.asset(
+                    "assets/charts/piechart3.jpeg",
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  prefix0.title(context: context, text: "Funding status"),
+                  Image.asset(
+                    "assets/charts/piechart.jpeg",
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  prefix0.title(
+                      context: context, text: "Startup stages density raito"),
+                  Image.asset(
+                    "assets/charts/piechart2.jpeg",
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  prefix0.title(
+                      context: context,
+                      text: "Geographical distribution of startups"),
+                  Image.asset(
+                    "assets/charts/map.jpeg",
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+            ),
+            Card(
+              margin: EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  prefix0.title(
+                      context: context,
+                      text: "Year-wise distribution of startups"),
+                  Image.asset(
+                    "assets/charts/year.jpeg",
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     ];
